@@ -2,8 +2,13 @@
 import clsx from "clsx";
 import { UiButtons } from "../../../components/uikit";
 import image from "./staticImages/about-page-image.png";
+import { useNavigate } from "react-router-dom";
 
 export function AboutPageHero({ className }) {
+  const navigate = useNavigate();
+  const go = () => {
+    navigate("/allproducts");
+  };
   return (
     <section className={clsx(className, "")}>
       <div className="grid grid-cols-2 gap-4 tablet:grid-cols-1">
@@ -14,10 +19,11 @@ export function AboutPageHero({ className }) {
             studio in South London in early 2014
           </p>
           <UiButtons
+            onClick={go}
             className="mt-48 tablet:w-full mobile:mt-14"
             color="lightBlue"
           >
-            View collection
+            View all
           </UiButtons>
         </div>
         <div className="max-h-[480px]">

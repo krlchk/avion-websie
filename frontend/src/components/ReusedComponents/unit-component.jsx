@@ -13,7 +13,7 @@ export function UnitComponent({ className, id, image, title, cost }) {
       onClick={handleClick}
       className={clsx(
         className,
-        "cursor-pointer text-xl transition-colors hover:text-[#2A254B]/70",
+        "cursor-pointer text-xl transition-colors text-[#2A254B] hover:text-[#2A254B]/70",
       )}
     >
       <div className="h-[400px] w-full overflow-hidden tablet:h-[350px] mobile:h-[300px]">

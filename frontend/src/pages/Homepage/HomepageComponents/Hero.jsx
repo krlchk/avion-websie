@@ -4,6 +4,7 @@ import { UiButtons } from "../../../components/uikit/ui-buttons";
 // import HeroImage from "./HeroImages/hero-image.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function Hero({ className }) {
   const [data, setData] = useState(null);
@@ -16,6 +17,11 @@ export function Hero({ className }) {
       .catch((err) => console.log(err));
   }, []);
 
+  const navigate = useNavigate();
+  const go = () => {
+    navigate("/allproducts");
+  };
+
   return (
     <section className={clsx(className, "")}>
       <div className="flex h-auto w-full">
@@ -25,11 +31,12 @@ export function Hero({ className }) {
               The furniture brand for the future, with timeless designs
             </p>
             <UiButtons
+              onClick={go}
               color="lightBlue"
               size="md"
               className="order-2 mt-10 mobile:order-3 mobile:w-full"
             >
-              View collection
+              View all
             </UiButtons>
             <p className="order-3 mt-48 text-lg leading-normal tablet:mt-32 mobile:order-2 mobile:mt-20">
               A new era in eco friendly furniture with Avelon, the French luxury
@@ -38,15 +45,13 @@ export function Hero({ className }) {
             </p>
           </div>
           <div className="h-full w-2/4 mobile:hidden">
-            {
-              data && (
-                <img
+            {data && (
+              <img
                 className="h-full w-full object-cover"
                 src={`http://localhost:5001/${data.img}`}
-                alt={data.title || 'Product Image'}
-                />
-              )
-            }
+                alt={data.title || "Product Image"}
+              />
+            )}
           </div>
         </div>
       </div>

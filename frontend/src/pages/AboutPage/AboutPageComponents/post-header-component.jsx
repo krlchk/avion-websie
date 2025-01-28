@@ -11,7 +11,7 @@ export function PostHeaderComponent({ className }) {
           customer service
         </h1>
         <div className="mt-10 flex items-center justify-center">
-          <Link className="px-8 py-4 hover:text-[#2A254B]/70">
+          <Link to="/allproducts" className="px-8 py-4 hover:text-[#2A254B]/70">
             View our products
           </Link>
         </div>
