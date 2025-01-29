@@ -49,7 +49,7 @@ export function Header({ className }) {
         <div className="flex items-center">
           <LogoIcon className="text-[#22202E]" />
         </div>
-        <NavigateComponent className="flex gap-11 font-Playfair text-lg font-normal [&>*]:transition-colors leading-6 text-[#726E8D] tablet:hidden [&>*:hover]:text-[#22202E]" />
+        <NavigateComponent className="flex gap-11 font-Playfair text-lg font-normal [&>*]:transition-colors leading-6 text-[#726E8D] mobile:hidden [&>*:hover]:text-[#22202E]" />
         <div className="flex gap-4">
           <button>
             <BasketIcon className="text-[#22202E] transition-colors hover:text-[#22202E]/80" />
@@ -57,7 +57,7 @@ export function Header({ className }) {
           <button>
             <ProfileIcon className="text-[#22202E] transition-colors hover:text-[#22202E]/80" />
           </button>
-          <button onClick={handleOpen} className="hidden tablet:block">
+          <button onClick={handleOpen} className="hidden mobile:block">
             <BurgerIcon className="text-[#22202E] transition-colors hover:text-[#22202E]/80" />
           </button>
         </div>

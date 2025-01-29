@@ -4,7 +4,7 @@ import image from "./staticImages/get-in-touch-image.png";
 
 export function GetInTouchConponent({ className, handleScrole }) {
   return (
-    <section className={clsx(className, "py-16 mobile:pt-0")}>
+    <section className={clsx(className, "mobile:pt-0")}>
       <div className="grid grid-cols-2 font-DMSans text-base font-normal text-[#2A254B] mobile:grid-cols-1">
         <div className="px-20 py-16 tablet:pl-6 mobile:px-6">
           <h1 className="text-2xl">

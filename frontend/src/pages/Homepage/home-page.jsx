@@ -28,7 +28,7 @@ export function Homepage() {
       <WhatMakesComponent className="container" />
       <SliderComponent className="container" />
       <JoinComponent ref={scrollTargetRef} className="container" />
-      <GetInTouchConponent handleScrole={handleScroleFunction} />
+      <GetInTouchConponent handleScrole={handleScroleFunction} className='pt-16' />
       <Footer className="container" />
     </div>
   );

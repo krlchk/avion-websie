@@ -19,6 +19,7 @@ export function ProductsCatalogComponent({ className, filters }) {
       .get("http://localhost:5001/api/products")
       .then((res) => {
         const fetchedData = res.data.data;
+        console.log("Fetched data:", fetchedData);
         setData(fetchedData);
         setList(slice(fetchedData, 0, LIMIT));
       })
@@ -28,6 +29,12 @@ export function ProductsCatalogComponent({ className, filters }) {
   useEffect(() => {
     const applyFilters = () => {
       let filtered = [...data];
+
+      if (filters["Title"] && filters["Title"].trim().length > 0) {
+        filtered = filtered.filter((item) =>
+          (item.title || "").toLowerCase().includes(filters["Title"]),
+        );
+      }
 
       if (filters["Type"] && filters["Type"].length > 0) {
         filtered = filtered.filter((item) =>
@@ -53,7 +60,8 @@ export function ProductsCatalogComponent({ className, filters }) {
       if (
         (!filters["Type"] || filters["Type"].length === 0) &&
         (!filters["Price"] || filters["Price"].length === 0) &&
-        (!filters["Designer"] || filters["Designer"].length === 0)
+        (!filters["Designer"] || filters["Designer"].length === 0) &&
+        (!filters["Title"] || filters["Title"].trim().length === 0)
       ) {
         filtered = [...data];
       }
