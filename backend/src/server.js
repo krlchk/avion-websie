@@ -5,8 +5,9 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import pool from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
-
+import userRoutes from "./routes/userRoutes.js";
 import errorHandling from "./middleware/errorHandling.js";
+import emailRoute from "./routes/emailRouter.js";
 
 dotenv.config();
 
@@ -22,6 +23,8 @@ app.use(cors());
 
 // Routes
 app.use("/api", productRoutes);
+app.use("/api", userRoutes);
+app.use("/api", emailRoute);
 
 // Error handling
 app.use(errorHandling);

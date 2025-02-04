@@ -9,7 +9,7 @@ export function PopUpModal({ className }) {
     useEffect(() => {
       setTimeout(() => {
         setIsOpen(true)
-      }, "5000");
+      }, "5000000");
     }, []);
     const handleClose = () => {
       setIsOpen((lastState) => !lastState);

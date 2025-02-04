@@ -7,19 +7,24 @@ import { BurgerIcon } from "./icons/burger-icon";
 
 import { useEffect, useState } from "react";
 
-import { NavigateComponent } from "./HeaderComponents/navigate-component";
-import { BurgerWindow } from "./HeaderComponents/burger-window-";
+import { NavigateComponent, BurgerWindow, UserModal } from "./HeaderComponents";
+import { Link } from "react-router-dom";
 
 export function Header({ className }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const handleOpen = () => {
     setIsOpen((prev) => !prev);
+  };
+  const handleOpenForUserModal = () => {
+    setIsUserModalOpen((prev) => !prev);
   };
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1279.99 && isOpen) {
+      if ((window.innerWidth > 1279.99 && isOpen) || isUserModalOpen) {
         setIsOpen(false);
+        setIsUserModalOpen(false);
       }
     };
     window.addEventListener("resize", handleResize);
@@ -27,12 +32,13 @@ export function Header({ className }) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [isOpen]);
+  }, [isOpen, isUserModalOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 1 && isOpen) {
+      if ((window.scrollY > 1 && isOpen) || isUserModalOpen) {
         setIsOpen(false);
+        setIsUserModalOpen(false);
       }
     };
 
@@ -41,20 +47,20 @@ export function Header({ className }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isOpen]);
+  }, [isOpen, isUserModalOpen]);
 
   return (
     <section className={clsx(className, "")}>
       <div className="flex justify-between">
-        <div className="flex items-center">
+        <Link to='/' className="flex items-center">
           <LogoIcon className="text-[#22202E]" />
-        </div>
-        <NavigateComponent className="flex gap-11 font-Playfair text-lg font-normal [&>*]:transition-colors leading-6 text-[#726E8D] mobile:hidden [&>*:hover]:text-[#22202E]" />
+        </Link>
+        <NavigateComponent className="flex gap-11 font-Playfair text-lg font-normal leading-6 text-[#726E8D] mobile:hidden [&>*:hover]:text-[#22202E] [&>*]:transition-colors" />
         <div className="flex gap-4">
-          <button>
+          <Link to='/basket-page'>
             <BasketIcon className="text-[#22202E] transition-colors hover:text-[#22202E]/80" />
-          </button>
-          <button>
+          </Link>
+          <button onClick={handleOpenForUserModal}>
             <ProfileIcon className="text-[#22202E] transition-colors hover:text-[#22202E]/80" />
           </button>
           <button onClick={handleOpen} className="hidden mobile:block">
@@ -63,6 +69,7 @@ export function Header({ className }) {
         </div>
       </div>
       <BurgerWindow isOpen={isOpen} />
+      <UserModal className='mr-10' isUserModalOpen={isUserModalOpen} />
     </section>
   );
 }

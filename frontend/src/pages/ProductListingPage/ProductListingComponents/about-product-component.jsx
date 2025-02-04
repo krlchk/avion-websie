@@ -1,18 +1,21 @@
 /* eslint-disable react/prop-types */
 import clsx from "clsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UiButtons } from "../../../components/uikit/ui-buttons";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCart } from "../../BasketPage/BasketPageComponents";
 
 export function AboutProductComponent({ className }) {
   const { id } = useParams();
   const [count, setCount] = useState(1);
   const [data, setData] = useState(null);
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    window.scrollTo(0,0)
-    setCount(1)
+    window.scrollTo(0, 0);
+    setCount(1);
     axios
       .get(`http://localhost:5001/api/products/${id}`)
       .then((res) => {
@@ -38,13 +41,15 @@ export function AboutProductComponent({ className }) {
     }
   };
   const handleAddCartClick = () => {
+    addToCart(data, count)
     setCount(1);
+    navigate("/basket-page");
   };
 
   return (
     <section className={clsx(className, "")}>
       {data && (
-        <div className="font-DMSans grid grid-cols-2 mobile:grid-cols-1 font-normal text-[#2A254B] ">
+        <div className="grid grid-cols-2 font-DMSans font-normal text-[#2A254B] mobile:grid-cols-1">
           <div className="max-h-[760px]">
             <img
               className="h-full w-full object-cover"
@@ -52,7 +57,7 @@ export function AboutProductComponent({ className }) {
               alt={data.title || "Product Image"}
             />
           </div>
-          <div className="flex flex-col items-center justify-center py-20 px-10 ">
+          <div className="flex flex-col items-center justify-center px-10 py-20">
             <h1 className="self-start text-4xl">{data.title}</h1>
             <p className="mt-4 self-start text-2xl text-black">£ {data.cost}</p>
             <h3 className="mt-14 self-start text-lg font-medium">
@@ -77,9 +82,9 @@ export function AboutProductComponent({ className }) {
               </div>
             </div>
             <div className="mt-8 flex items-center justify-center self-start">
-              <div className="flex items-center justify-center flex-col">
-                <h3 className="mr-8 text-base self-start">Amount</h3>
-                <div className="flex gap-5 text-base mt-8 self-start">
+              <div className="flex flex-col items-center justify-center">
+                <h3 className="mr-8 self-start text-base">Amount</h3>
+                <div className="mt-8 flex gap-5 self-start text-base">
                   <button
                     onClick={handleDown}
                     className="h-10 w-10 rounded-full border border-[#2A254B] font-semibold transition-colors hover:bg-[#2A254B]/20"

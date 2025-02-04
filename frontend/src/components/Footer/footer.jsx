@@ -8,32 +8,17 @@ import { SkypeIcon } from "./footer-icons/skype-icon";
 
 export function Footer({ className }) {
   const menu = [
-    { name: "New arrivals", to: "" },
-    { name: "Best sellers", to: "" },
-    { name: "Recently viewed", to: "" },
-    { name: "Popular this week", to: "" },
-    { name: "All products", to: "" },
-  ];
-  const categories = [
-    { name: "Crockery", to: "" },
-    { name: "Furniture", to: "" },
-    { name: "Homeware", to: "" },
-    { name: "Plant pots", to: "" },
-    { name: "Chairs", to: "" },
-  ];
-  const company = [
-    { name: "About us", to: "" },
-    { name: "Vacancies", to: "" },
-    { name: "Contact us", to: "" },
-    { name: "Privacy", to: "" },
-    { name: "Returns policy", to: "" },
+    { name: "Homepage", to: "/" },
+    { name: "About Us", to: "/aboutus" },
+    { name: "All products", to: "/allproducts" },
+    { name: "Your basket", to: "/basket-page" },
   ];
 
   return (
     <footer className={clsx(className, "bg-[#2A254B]")}>
-      <div className="grid grid-cols-5 font-DMSans text-base font-normal text-white mobile:grid-cols-2 xs:grid-cols-1">
-        <div className="flex flex-col gap-3">
-          <p className="text-xl">Menu</p>
+      <div className="grid grid-cols-2 font-DMSans text-base font-normal text-white mobile:grid-cols-1">
+        <div className="flex flex-col items-center gap-3">
+          <p className="text-xl">Navigation menu</p>
           {menu.map((item, index) => (
             <Link
               className="inline-flex cursor-default transition-colors"
@@ -44,36 +29,13 @@ export function Footer({ className }) {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col gap-3 xs:mt-10">
-          <p className="text-xl">Categories</p>
-          {categories.map((item, index) => (
-            <Link
-              className="inline-flex cursor-default transition-colors"
-              to={item.to}
-              key={index}
-            >
-              <p className="cursor-pointer hover:text-gray-400">{item.name}</p>
-            </Link>
-          ))}
-        </div>
-        <div className="flex flex-col gap-3 mobile:mt-10">
-          <p className="text-xl">Our company</p>
-          {company.map((item, index) => (
-            <Link
-              className="inline-flex cursor-default transition-colors"
-              to={item.to}
-              key={index}
-            >
-              <p className="cursor-pointer hover:text-gray-400">{item.name}</p>
-            </Link>
-          ))}
-        </div>
-        <div className="col-span-2 grid mobile:mt-10 xs:col-span-1">
-          <div className="flex flex-col">
+
+        <div className="grid mobile:mt-20 xs:col-span-1">
+          <div className="flex flex-col items-center">
             <p className="text-xl">Join our mailing list</p>
             <EmailComponent
               inputClassName="bg-violet-800/30"
-              buttonColor="white"
+              buttonColor="lightBlue"
               className="mt-4 mobile:mt-2"
             />
           </div>

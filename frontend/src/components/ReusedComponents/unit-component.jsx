@@ -2,7 +2,15 @@
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 
-export function UnitComponent({ className, id, image, title, cost }) {
+export function UnitComponent({
+  className,
+  unitImageClassName,
+  id,
+  image,
+  title,
+  cost,
+  unitParamsClassName,
+}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -13,14 +21,21 @@ export function UnitComponent({ className, id, image, title, cost }) {
       onClick={handleClick}
       className={clsx(
         className,
-        "cursor-pointer text-xl transition-colors text-[#2A254B] hover:text-[#2A254B]/70",
+        "cursor-pointer text-xl text-[#2A254B] transition-colors hover:text-[#2A254B]/70",
       )}
     >
-      <div className="h-[400px] w-full overflow-hidden tablet:h-[350px] mobile:h-[300px]">
+      <div
+        className={clsx(
+          "h-[400px] w-full overflow-hidden tablet:h-[350px] mobile:h-[300px]",
+          unitImageClassName,
+        )}
+      >
         <img className="h-full w-full object-cover" src={image} alt="image" />
       </div>
-      <p className="mt-6 mobile:text-base">{title}</p>
-      <p className="mt-2 mobile:text-base">£{cost}</p>
+      <div>
+        <p  className={clsx(unitParamsClassName, "mt-6 mobile:text-base")}>{title}</p>
+        <p className="mt-2 mobile:text-base">£{cost}</p>
+      </div>
     </div>
   );
 }

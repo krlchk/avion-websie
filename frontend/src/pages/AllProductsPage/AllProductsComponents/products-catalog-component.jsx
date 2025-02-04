@@ -19,7 +19,6 @@ export function ProductsCatalogComponent({ className, filters }) {
       .get("http://localhost:5001/api/products")
       .then((res) => {
         const fetchedData = res.data.data;
-        console.log("Fetched data:", fetchedData);
         setData(fetchedData);
         setList(slice(fetchedData, 0, LIMIT));
       })

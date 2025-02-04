@@ -26,7 +26,7 @@ export function UiButtons({ children, color, size, className, onClick }) {
     }[color],
   );
   return (
-    <button onClick={onClick} className={buttonClassName}>
+    <button type="submit" onClick={onClick} className={buttonClassName}>
       {children}
     </button>
   );
