@@ -44,7 +44,7 @@ export function Footer({ className }) {
       <hr className="mt-12 border-[#4E4D93]" />
       <div>
         <div className="mt-6 flex justify-between mobile:flex-col mobile:items-center">
-          <p className="text-lg text-white">Copyright 2022 Avion LTD</p>
+          <p className="text-lg text-white">Copyright 2025 Avion LTD</p>
           <div className="flex gap-6 text-white mobile:mt-5">
             <Link
               to="https://facebook.com"
